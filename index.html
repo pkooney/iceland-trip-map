@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceland Trip Sep 2026 - Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>html,body{margin:0;height:100%}#map{height:100vh}
+.legend{background:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.3);font:13px/1.6 sans-serif}
+.legend b{display:block;margin-bottom:4px}.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px}</style>
+</head><body><div id="map"></div><script>
+function coloredIcon(c){return L.divIcon({className:'',html:`<div style="width:14px;height:14px;background:${c};border:2px solid #fff;border-radius:50%;box-shadow:0 0 4px rgba(0,0,0,.5)"></div>`,iconSize:[18,18],iconAnchor:[9,9]});}
+var map=L.map('map');
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+L.marker([63.9850119,-22.6266959], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Pick Up Hertz Car Rental</b><br>9:30 AM GMT - Pick Up Hertz Car Rental');
+L.marker([64.1164654,-21.9464351], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Sky Lagoon</b><br>Sky Lagoon - Sér - Skjol Ritual');
+L.marker([64.1292462,-21.9190279], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Perlan Nature Museum</b><br>Perlan Nature Museum, Icelandic hot dog - Bæjarins Beztu Pylsur, FlyOverIceland');
+L.marker([64.1481562,-21.9378393], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Icelandic hot dog</b><br>Perlan Nature Museum, Icelandic hot dog - Bæjarins Beztu Pylsur, FlyOverIceland');
+L.marker([64.1504326,-21.9328535], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Arrive The EDITION Reykjavik</b><br>3:00 PM GMT - Arrive The EDITION Reykjavik');
+L.marker([64.1445363,-21.922476], {icon: coloredIcon('#ff3b30')}).addTo(map).bindPopup('<b>Dill Restaurant</b><br>6:45 PM GMT - Dill Restaurant');
+L.polyline([[63.9850119,-22.6266959],[64.1164654,-21.9464351],[64.1292462,-21.9190279],[64.1481562,-21.9378393],[64.1504326,-21.9328535],[64.1445363,-21.922476]], {color:'#ff3b30', weight:4, opacity:0.7, dashArray:'8 8'}).addTo(map);
+L.marker([64.1504326,-21.9328535], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Depart The EDITION Reykjavik</b><br>8:30 AM GMT - Depart The EDITION Reykjavik');
+L.marker([64.2786082,-21.0819412], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Thingvellier National Park</b><br>9:30 AM GMT - Thingvellier National Park');
+L.marker([64.2100527,-20.7005841], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Caves of Laugarvatn</b><br>11:00 AM GMT - Caves of Laugarvatn');
+L.marker([64.2148095,-20.7302155], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Fontana Geothermal Bakery</b><br>11:30 AM GMT - Fontana Geothermal Bakery');
+L.marker([64.1780276,-20.4453165], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Vínstofa Friðheima</b><br>Vínstofa Friðheima - winebar & restaurant');
+L.marker([64.3126964,-20.3007733], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Haukadalur Geothermal Valley</b><br>Haukadalur Geothermal Valley - Geysir Walking Trail - Strokkur Geyser');
+L.marker([64.314452,-20.1495557], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Gullfoss Waterfall + Lamb Soup at Gullfoss Cafe</b><br>3:15 PM GMT - Gullfoss Waterfall + Lamb Soup at Gullfoss Cafe');
+L.marker([64.1129795,-20.5074819], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Laugaras Lagoon</b><br>Laugaras Lagoon - Lerki Experience');
+L.marker([63.8231709,-20.3602933], {icon: coloredIcon('#ff9500')}).addTo(map).bindPopup('<b>Arrive Hotel Ranga</b><br>7:15 PM GMT - Arrive Hotel Ranga');
+L.polyline([[64.1504326,-21.9328535],[64.2786082,-21.0819412],[64.2100527,-20.7005841],[64.2148095,-20.7302155],[64.1780276,-20.4453165],[64.3126964,-20.3007733],[64.314452,-20.1495557],[64.1129795,-20.5074819],[63.8231709,-20.3602933]], {color:'#ff9500', weight:4, opacity:0.7, dashArray:'8 8'}).addTo(map);
+L.marker([63.8231709,-20.3602933], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Depart Hotel Ranga</b><br>8:30 AM GMT - Depart Hotel Ranga');
+L.marker([63.6154571,-19.9881686], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Seljalandsfoss Waterfall</b><br>8:50 AM GMT - Seljalandsfoss Waterfall');
+L.marker([63.5461395,-19.6597831], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Roadside Eyjafjallajökull Viewpoint</b><br>9:55 AM GMT - Roadside Eyjafjallajökull Viewpoint');
+L.marker([63.5321038,-19.511292], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Skógafoss Waterfall</b><br>10:25 AM GMT - Skógafoss Waterfall');
+L.marker([63.5660204,-19.2955016], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Sólheimajökull Glacier Lagoon Viewpoint</b><br>11:20 AM GMT - Sólheimajökull Glacier Lagoon Viewpoint');
+L.marker([63.4044262,-19.0587987], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Reynisfjara Black Sand Beach</b><br>12:10 PM GMT - Reynisfjara Black Sand Beach');
+L.marker([63.5716768,-19.7951561], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Skálakot Manor Restaurant</b><br>1:00 PM GMT - Skálakot Manor Restaurant');
+L.marker([64.0417879,-20.886481], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Volcanic Loop Walk at Kerið Crater</b><br>3:15 PM GMT - Volcanic Loop Walk at Kerið Crater');
+L.marker([63.879437,-22.4499558], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Arrive The Retreat at Blue Lagoon Iceland</b><br>5:45 PM GMT - Arrive The Retreat at Blue Lagoon Iceland');
+L.marker([63.8800487,-22.4493538], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Blue Lagoon</b><br>Blue Lagoon - Enjoy Thermal Waters');
+L.marker([63.8800487,-22.4493538], {icon: coloredIcon('#34c759')}).addTo(map).bindPopup('<b>Lava Restaurant</b><br>8:00 PM GMT - Lava Restaurant');
+L.polyline([[63.8231709,-20.3602933],[63.6154571,-19.9881686],[63.5461395,-19.6597831],[63.5321038,-19.511292],[63.5660204,-19.2955016],[63.4044262,-19.0587987],[63.5716768,-19.7951561],[64.0417879,-20.886481],[63.879437,-22.4499558],[63.8800487,-22.4493538],[63.8800487,-22.4493538]], {color:'#34c759', weight:4, opacity:0.7, dashArray:'8 8'}).addTo(map);
+L.marker([63.8682955,-22.6755411], {icon: coloredIcon('#007aff')}).addTo(map).bindPopup('<b>Bridge Between Continents</b><br>Bridge Between Continents, Lighthouse & Valahnúkamöl Cliffs, Gunnuhver Hot Springs, Brimketill Pool');
+L.marker([63.8156125,-22.7043669], {icon: coloredIcon('#007aff')}).addTo(map).bindPopup('<b>Lighthouse & Valahnúkamöl Cliffs</b><br>Bridge Between Continents, Lighthouse & Valahnúkamöl Cliffs, Gunnuhver Hot Springs, Brimketill Pool');
+L.marker([63.8194447,-22.6841797], {icon: coloredIcon('#007aff')}).addTo(map).bindPopup('<b>Gunnuhver Hot Springs</b><br>Bridge Between Continents, Lighthouse & Valahnúkamöl Cliffs, Gunnuhver Hot Springs, Brimketill Pool');
+L.marker([63.8191478,-22.6060115], {icon: coloredIcon('#007aff')}).addTo(map).bindPopup('<b>Brimketill Pool</b><br>Bridge Between Continents, Lighthouse & Valahnúkamöl Cliffs, Gunnuhver Hot Springs, Brimketill Pool');
+L.marker([63.879437,-22.4499558], {icon: coloredIcon('#007aff')}).addTo(map).bindPopup('<b>Moss Restaurant</b><br>7:30 PM GMT - Moss Restaurant');
+L.polyline([[63.8682955,-22.6755411],[63.8156125,-22.7043669],[63.8194447,-22.6841797],[63.8191478,-22.6060115],[63.879437,-22.4499558]], {color:'#007aff', weight:4, opacity:0.7, dashArray:'8 8'}).addTo(map);
+L.marker([63.879437,-22.4499558], {icon: coloredIcon('#af52de')}).addTo(map).bindPopup('<b>Depart The Retreat at Blue Lagoon Iceland</b><br>11:00 AM GMT - Depart The Retreat at Blue Lagoon Iceland');
+L.marker([63.9850119,-22.6266959], {icon: coloredIcon('#af52de')}).addTo(map).bindPopup('<b>Drop Off Hertz Car Rental</b><br>5:30 PM GMT - Drop Off Hertz Car Rental');
+L.polyline([[63.879437,-22.4499558],[63.9850119,-22.6266959]], {color:'#af52de', weight:4, opacity:0.7, dashArray:'8 8'}).addTo(map);
+var b=[];map.eachLayer(function(l){if(l.getLatLng)b.push(l.getLatLng());});if(b.length)map.fitBounds(b,{padding:[40,40]});
+L.control({position:'bottomleft'}).onAdd=function(){var d=L.DomUtil.create('div','legend');d.innerHTML='<b>Iceland Trip Sep 2026</b><div><i style="background:#ff3b30"></i>Thu, Sep 3</div><div><i style="background:#ff9500"></i>Fri, Sep 4</div><div><i style="background:#34c759"></i>Sat, Sep 5</div><div><i style="background:#007aff"></i>Sun, Sep 6</div><div><i style="background:#af52de"></i>Mon, Sep 7</div>';return d;}.addTo(map);
+</script></body></html>
