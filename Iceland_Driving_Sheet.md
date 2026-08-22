@@ -1,5 +1,5 @@
 # Iceland Road Trip - Driving Sheet
-**Total (approx): 722 km / 12.4 hrs**
+**Total (approx): 823 km / 14.1 hrs**
 
 
 ## Thu, Sep 3
@@ -44,13 +44,17 @@
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Bridge Between Continents → Lighthouse & Valahnúkamöl Cliffs | 7.4 km | 8 min |
-| Lighthouse & Valahnúkamöl Cliffs → Gunnuhver Hot Springs | 5.8 km | 10 min |
+| Lighths & Valahnúkamöl Cliffs → Gunnuhver Hot Springs | 5.8 km | 10 min |
 | Gunnuhver Hot Springs → Brimketill Pool | 4.6 km | 9 min |
-| Brimketill Pool → Moss Restaurant | 16.7 km | 17 min |
+| Brimketill Pool → Hvalsneskirkja | 30.8 km | 28 min |
+| Hvalsneskirkja → Massage | 32.6 km | 32 min |
+| Massage → Blue Lagoon Ritual | 1.8 km | 5 min |
+| Blue Lagoon Ritual → Moss Restaurant | 0.0 km | 0 min |
 
 ## Mon, Sep 7
 
 | Leg | Distance | Drive time |
 |---|---|---|
+| Perlan Nature Museum → Viking World Museum | 41.8 km | 40 min |
+| Viking World Museum → Depart The Retreat at Blue Lagoon Iceland | 17.5 km | 19 min |
 | Depart The Retreat at Blue Lagoon Iceland → Drop Off Hertz Car Rental | 25.4 km | 29 min |
