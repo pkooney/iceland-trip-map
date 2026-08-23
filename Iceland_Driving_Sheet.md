@@ -1,5 +1,5 @@
 # Iceland Road Trip - Driving Sheet
-**Total (approx): 823 km / 14.1 hrs**
+**Total (approx): 822 km / 14.1 hrs**
 
 
 ## Thu, Sep 3
@@ -10,7 +10,7 @@
 | Sky Lagoon → Perlan Nature Museum | 5.1 km | 10 min |
 | Perlan Nature Museum → Icelandic hot dog | 4.2 km | 8 min |
 | Icelandic hot dog → Arrive The EDITION Reykjavik | 1.1 km | 4 min |
-| Arrive The EDITION Reykjavik → Dill Restaurant | 1.3 km | 3 min |
+| Arrive The EDITION Reykjavik → Dill Restaurant | 1.1 km | 3 min |
 
 ## Fri, Sep 4
 
