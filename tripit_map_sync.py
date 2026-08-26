@@ -24,7 +24,7 @@ def in_iceland(hit):
     return (ICELAND_BBOX["min_lat"] <= hit["lat"] <= ICELAND_BBOX["max_lat"] and
             ICELAND_BBOX["min_lon"] <= hit["lon"] <= ICELAND_BBOX["max_lon"])
 
-SHARE_URL = "https://www.tripit.com/p/960A1FBC22D205E8C2D68AAA76746AD5"
+SHARE_URL = "https://www.tripit.com/p/ACAF6D20819AD7BFA3F72D57C62D4435"
 REPO = "pkooney/iceland-trip-map"
 WORKDIR = os.path.expanduser("~/tripit_map")
 CACHE_FILE = os.path.join(WORKDIR, "geocode_cache.json")
