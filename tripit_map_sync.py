@@ -5,7 +5,7 @@ Fetches a TripIt public share link, parses itinerary items, geocodes new
 locations (cached), rebuilds KML + Leaflet HTML map + driving sheet, and
 publishes to a GitHub Pages repo.
 """
-import argparse, json, os, re, subprocess, sys, time, unicodedata, urllib.request
+import argparse, datetime as dt, json, os, re, subprocess, sys, time, unicodedata, urllib.request
 
 ICELAND_BBOX = {"min_lat": 63.2, "max_lat": 67.5, "min_lon": -25.0, "max_lon": -12.5}
 
@@ -32,6 +32,29 @@ DAY_COLORS = ["#ff3b30", "#ff9500", "#34c759", "#007aff", "#af52de"]
 KML_COLORS = {"#ff3b30": "ff0000ff", "#ff9500": "ff0088ff", "#34c759": "ff59c734",
               "#007aff": "ffff7a00", "#af52de": "ffde52af"}
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+
+MANUAL_COORDS = [
+    ("hotel ranga", 63.7809, -20.2923, "Hotel Rangá, Hella, Iceland"),
+    ("ranga restaurant", 63.7809, -20.2923, "Hotel Rangá, Hella, Iceland"),
+    ("retreat at blue lagoon", 63.8796, -22.4495, "The Retreat at Blue Lagoon, Iceland"),
+    ("blue lagoon", 63.8804, -22.4495, "Blue Lagoon, Iceland"),
+    ("lava restaurant", 63.8804, -22.4495, "Lava Restaurant, Blue Lagoon, Iceland"),
+    ("moss restaurant", 63.8796, -22.4495, "Moss Restaurant, The Retreat, Iceland"),
+    ("dill restaurant", 64.1448, -21.9200, "Dill Restaurant, Reykjavík, Iceland"),
+    ("edition reykjavik", 64.1502, -21.9326, "The EDITION Reykjavik, Iceland"),
+    ("perlan", 64.1292, -21.9195, "Perlan, Reykjavík, Iceland"),
+    ("viking world", 63.9791, -22.5399, "Viking World Museum, Iceland"),
+    ("hvalsneskirkja", 63.9934, -22.7395, "Hvalsneskirkja, Iceland"),
+    ("massage", 63.8796, -22.4495, "The Retreat Spa, Blue Lagoon, Iceland"),
+    ("eyjafjallajokull", 63.5436, -19.6677, "Eyjafjallajökull viewpoint, Iceland"),
+]
+
+def manual_coord(query):
+    q = norm(query)
+    for frag, lat, lon, display in MANUAL_COORDS:
+        if norm(frag) in q:
+            return {"lat": lat, "lon": lon, "display": display}
+    return None
 
 # Title fragments (lowercase, matched with 'in') -> good Nominatim query.
 ALIASES = [
@@ -126,6 +149,131 @@ def parse_tripit(text):
             day = f"{mm}/{dd}/{yyyy}"
         items.append({"day": day, "date": f"{yyyy}-{mm}-{dd}", "title": title,
                       "time": tm, "address": addr, "raw": block})
+    if items:
+        return items
+    return parse_tripit_record_format(text)
+
+def month_date_to_iso(s):
+    m = re.search(r"(\d{1,2})\.\s*September\s+(2026)", s, re.I)
+    if not m:
+        return None
+    return f"{m.group(2)}-09-{int(m.group(1)):02d}"
+
+def slash_date_to_iso(s):
+    m = re.search(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b", s)
+    if not m:
+        return None
+    mm, dd, yyyy = map(int, m.groups())
+    return f"{yyyy:04d}-{mm:02d}-{dd:02d}"
+
+def day_label(iso_date):
+    try:
+        d = dt.date.fromisoformat(iso_date)
+        return d.strftime("%a, Sep %-d")
+    except ValueError:
+        d = dt.date.fromisoformat(iso_date)
+        return d.strftime("%a, Sep %#d")
+
+def first_time(block):
+    m = re.search(r"(?:###\s*)?(\d{1,2}:\d{2})\s*(AM|PM)\s*(?:GMT|EDT)?", block, re.I)
+    return f"{m.group(1)} {m.group(2).upper()} GMT" if m else None
+
+def clean_record_title(line):
+    line = re.sub(r"^#+\s*", "", line.strip())
+    bad = {"depart", "arrive", "end", "source:", "note url", "location name", "address",
+           "pickup phone #", "drop-off phone #", "phone #", "calendar", "move", "cancel"}
+    if re.search(r"\b\d{1,2}:\d{2}\s*(?:am|pm)\b|\b\d{1,2}/\d{1,2}/\d{4}\b", line, re.I):
+        return ""
+    if re.fullmatch(r"\d+H(?:,\s*\d+M)?|\d+M", line, re.I):
+        return ""
+    return line if line and line.lower() not in bad and not line.startswith("[[TripItALT") else ""
+
+def infer_record_date(block, current_date):
+    # Prefer explicit event dates: "on  9/3/2026", "9/3/2026 at 3:00pm", or Noona's date wording.
+    m = re.search(r"\bon\s+(\d{1,2}/\d{1,2}/\d{4})", block, re.I)
+    if m:
+        return slash_date_to_iso(m.group(1))
+    m = re.search(r"\b(\d{1,2}/\d{1,2}/\d{4})\s+at\s+\d", block, re.I)
+    if m:
+        return slash_date_to_iso(m.group(1))
+    md = month_date_to_iso(block)
+    if md:
+        return md
+    # For car/hotel blocks that only show checkout/dropoff date plus duration, back into start date.
+    m = re.search(r"\b(\d{1,2}/\d{1,2}/\d{4})\s*\((\d+)\s+(?:Night|Nights|Day|Days)\)", block, re.I)
+    if m:
+        end = dt.date.fromisoformat(slash_date_to_iso(m.group(1)))
+        return (end - dt.timedelta(days=int(m.group(2)))).isoformat()
+    # Restaurant records sometimes omit the date; TripIt lists records chronologically.
+    return current_date
+
+def title_from_record(block):
+    if "DILL Restaurant" in block:
+        return "Dill Restaurant"
+    if "Moss Restaurant" in block:
+        return "Moss Restaurant"
+    if "Lava Restaurant" in block:
+        return "Lava Restaurant"
+    if "Ranga Restaurant" in block:
+        return "Ranga Restaurant"
+    if "Vínstofa Friðheima" in block:
+        return "Vínstofa Friðheima"
+    if "Skálakot Manor Restaurant" in block:
+        return "Skálakot Manor Restaurant"
+    if "Bridge Between Continents" in block and "Gunnuhver" in block:
+        return "Bridge Between Continents - Reykjanesviti Lighthouse & Valahnúkamöl Cliffs - Gunnuhver Hot Springs - Brimketill Pool"
+    if "Blue Lagoon Ritual" in block or "ritual chamber" in block:
+        return "Blue Lagoon Ritual"
+    if "massage" in norm(block):
+        return "Massage"
+    if "Viking World" in block:
+        return "Viking World Museum"
+    if "Perlan" in block:
+        return "Perlan Nature Museum"
+    supplier = re.search(r"^Supplier Name:(.+)$", block, re.M)
+    supplier_name = supplier.group(1).strip() if supplier else ""
+    if supplier_name:
+        if "### Pick Up" in block:
+            return f"Pick Up {supplier_name} Car Rental"
+        if "### Check In" in block:
+            return f"Arrive {supplier_name}"
+        return supplier_name
+    lines = [l.strip() for l in block.splitlines() if l.strip()]
+    for i, line in enumerate(lines):
+        if re.match(r"^(?:###\s*)?\d{1,2}:\d{2}\s*(?:AM|PM)\s*(?:GMT|EDT)?$", line, re.I):
+            for cand in lines[i+1:i+6]:
+                title = clean_record_title(cand)
+                if title:
+                    return title
+    return ""
+
+def parse_tripit_record_format(text):
+    items, current_date = [], None
+    chunks = re.split(r"!\[Image \d+: seat alerts icon\]\(https://www\.tripit\.com/images/clear\.gif\)", text)
+    for block in chunks[1:]:
+        title = title_from_record(block)
+        iso = infer_record_date(block, current_date)
+        tm = first_time(block)
+        if iso:
+            current_date = iso
+        # Some public TripIt records redact the title as generic "Location Name"; use known itinerary slots.
+        slot_titles = {
+            ("2026-09-03", "2:00 PM GMT"): "Perlan Nature Museum",
+            ("2026-09-05", "9:55 AM GMT"): "Roadside Eyjafjallajökull Viewpoint",
+            ("2026-09-05", "3:30 PM GMT"): "Arrive The Retreat at Blue Lagoon Iceland",
+            ("2026-09-06", "1:30 PM GMT"): "Hvalsneskirkja",
+            ("2026-09-06", "3:00 PM GMT"): "Massage",
+            ("2026-09-07", "11:00 AM GMT"): "Depart The Retreat at Blue Lagoon Iceland",
+            ("2026-09-07", "12:00 PM GMT"): "Viking World Museum",
+        }
+        if (not title or title.lower() == "location name") and iso and tm:
+            title = slot_titles.get((iso, tm), title)
+        if not title or re.search(r"\bJFK\b|New York|Icelandair|Dial 7", title, re.I):
+            continue
+        if not iso:
+            continue
+        items.append({"day": day_label(iso), "date": iso, "title": title,
+                      "time": tm, "address": None, "raw": block})
     return items
 
 def load_cache():
@@ -140,6 +288,9 @@ def save_cache(cache):
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
 def geocode(query, cache):
+    fixed = manual_coord(query)
+    if fixed:
+        return fixed
     key = query.strip().lower()
     if key in cache:
         return cache[key]
@@ -368,7 +519,11 @@ def main():
 
     print("Fetching TripIt share link...")
     text = fetch_tripit(args.share)
-    if not text or "TripIt" not in text[:2000]:
+    # Jina's rendering of TripIt public pages is valid even when the first
+    # couple KB contain only the page title and lowercase source URL, so accept
+    # either the TripIt marker, source URL, or itinerary title text.
+    head = (text or "")[:4000].lower()
+    if not text or not any(marker in head for marker in ("tripit", "tripit.com/p/", "check out my itinerary")):
         print("ERROR: could not fetch TripIt page"); sys.exit(1)
 
     print("Parsing itinerary...")

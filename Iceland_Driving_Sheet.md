@@ -1,60 +1,67 @@
 # Iceland Road Trip - Driving Sheet
-**Total (approx): 822 km / 14.1 hrs**
+**Total (approx): 747 km / 12.8 hrs**
 
+
+## Wed, Sep 2
+
+| Leg | Distance | Drive time |
+|---|---|---|
 
 ## Thu, Sep 3
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Pick Up Hertz Car Rental → Sky Lagoon | 49.4 km | 53 min |
 | Sky Lagoon → Perlan Nature Museum | 5.1 km | 10 min |
-| Perlan Nature Museum → Icelandic hot dog | 4.2 km | 8 min |
-| Icelandic hot dog → Arrive The EDITION Reykjavik | 1.1 km | 4 min |
-| Arrive The EDITION Reykjavik → Dill Restaurant | 1.1 km | 3 min |
+| Perlan Nature Museum → Arrive The EDITION Reykjavik | 4.1 km | 8 min |
+| Arrive The EDITION Reykjavik → Dill Restaurant | 1.2 km | 3 min |
+| Dill Restaurant → Arrive The EDITION Reykjavik | 1.1 km | 2 min |
+| Arrive The EDITION Reykjavik → Pick Up Hertz Car Rental | 53.1 km | 55 min |
+| Pick Up Hertz Car Rental → Reykjavik | 52.7 km | 55 min |
 
 ## Fri, Sep 4
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Depart The EDITION Reykjavik → Thingvellier National Park | 51.5 km | 50 min |
-| Thingvellier National Park → Caves of Laugarvatn | 30.9 km | 34 min |
+| Þingvellir Parking P1 → Caves of Laugarvatn | 35.8 km | 40 min |
 | Caves of Laugarvatn → Fontana Geothermal Bakery | 5.6 km | 8 min |
 | Fontana Geothermal Bakery → Vínstofa Friðheima | 24.7 km | 23 min |
-| Vínstofa Friðheima → Haukadalur Geothermal Valley | 19.5 km | 18 min |
-| Haukadalur Geothermal Valley → Gullfoss Waterfall + Lamb Soup at Gullfoss Cafe | 7.9 km | 7 min |
-| Gullfoss Waterfall + Lamb Soup at Gullfoss Cafe → Laugaras Lagoon | 36.7 km | 35 min |
-| Laugaras Lagoon → Arrive Hotel Ranga | 50.0 km | 45 min |
+| Vínstofa Friðheima → Strokkur Geyser | 19.5 km | 18 min |
+| Strokkur Geyser → Gullfoss Waterfall Lookout | 7.9 km | 7 min |
+| Gullfoss Waterfall Lookout → Laugarás Lagoon | 36.7 km | 35 min |
+| Laugarás Lagoon → Arrive Hotel Ranga | 56.0 km | 51 min |
+| Arrive Hotel Ranga → Ranga Restaurant | 0.0 km | 0 min |
+| Ranga Restaurant → Arrive Hotel Ranga | 0.0 km | 0 min |
 
 ## Sat, Sep 5
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Depart Hotel Ranga → Seljalandsfoss Waterfall | 31.8 km | 29 min |
 | Seljalandsfoss Waterfall → Roadside Eyjafjallajökull Viewpoint | 21.2 km | 22 min |
-| Roadside Eyjafjallajökull Viewpoint → Skógafoss Waterfall | 9.0 km | 11 min |
-| Skógafoss Waterfall → Sólheimajökull Glacier Lagoon Viewpoint | 23.1 km | 38 min |
-| Sólheimajökull Glacier Lagoon Viewpoint → Reynisfjara Black Sand Beach | 35.2 km | 48 min |
+| Roadside Eyjafjallajökull Viewpoint → Skógafoss | 9.0 km | 11 min |
+| Skógafoss → Solheimajökull Glacier Lagoon | 23.1 km | 38 min |
+| Solheimajökull Glacier Lagoon → Reynisfjara Black Sand Beach | 35.2 km | 48 min |
 | Reynisfjara Black Sand Beach → Skálakot Manor Restaurant | 50.3 km | 46 min |
-| Skálakot Manor Restaurant → Volcanic Loop Walk at Kerið Crater | 97.8 km | 88 min |
-| Volcanic Loop Walk at Kerið Crater → Arrive The Retreat at Blue Lagoon Iceland | 106.1 km | 94 min |
+| Skálakot Manor Restaurant → Kerið Crater | 97.8 km | 88 min |
+| Kerið Crater → Arrive The Retreat at Blue Lagoon Iceland | 106.1 km | 94 min |
+| Arrive The Retreat at Blue Lagoon Iceland → Arrive The Retreat at Blue Lagoon Iceland | 0.0 km | 0 min |
 | Arrive The Retreat at Blue Lagoon Iceland → Blue Lagoon | 0.0 km | 0 min |
 | Blue Lagoon → Lava Restaurant | 0.0 km | 0 min |
+| Lava Restaurant → Arrive The Retreat at Blue Lagoon Iceland | 0.0 km | 0 min |
 
 ## Sun, Sep 6
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Lighths & Valahnúkamöl Cliffs → Gunnuhver Hot Springs | 5.8 km | 10 min |
+| Bridge Between Continents → Reykjanesviti Lighthouse & Valahnúkamöl Cliffs | 7.4 km | 8 min |
+| Reykjanesviti Lighthouse & Valahnúkamöl Cliffs → Gunnuhver Hot Springs | 5.8 km | 10 min |
 | Gunnuhver Hot Springs → Brimketill Pool | 4.6 km | 9 min |
-| Brimketill Pool → Hvalsneskirkja | 30.8 km | 28 min |
-| Hvalsneskirkja → Massage | 32.6 km | 32 min |
-| Massage → Blue Lagoon Ritual | 1.8 km | 5 min |
+| Brimketill Pool → Hvalsneskirkja | 30.9 km | 29 min |
+| Hvalsneskirkja → Massage | 33.2 km | 33 min |
+| Massage → Blue Lagoon Ritual | 0.0 km | 0 min |
 | Blue Lagoon Ritual → Moss Restaurant | 0.0 km | 0 min |
 
 ## Mon, Sep 7
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Perlan Nature Museum → Viking World Museum | 41.8 km | 40 min |
-| Viking World Museum → Depart The Retreat at Blue Lagoon Iceland | 17.5 km | 19 min |
-| Depart The Retreat at Blue Lagoon Iceland → Drop Off Hertz Car Rental | 25.4 km | 29 min |
+| Depart The Retreat at Blue Lagoon Iceland → Viking World Museum | 18.9 km | 20 min |
