@@ -452,22 +452,30 @@ def build_html(days, order):
         pts = ",".join(f"[{s['lat']},{s['lon']}]" for s in stops)
         markers.append(f"L.polyline([{pts}], {{color:'{color}', weight:4, opacity:0.7, dashArray:'8 8'}}).addTo(map);")
     legend_items = "".join(
-        f"<div><i style=\"background:{DAY_COLORS[i % 5]}\"></i>{day}</div>" for i, day in enumerate(order))
+        f"<div class=\"legend-row\"><i style=\"background:{DAY_COLORS[i % len(DAY_COLORS)]}\"></i>"
+        f"<span class=\"legend-day\">{day}, 2026</span>"
+        f"<code>{DAY_COLORS[i % len(DAY_COLORS)]}</code>"
+        f"<span class=\"legend-count\">{len(days[day])} stops</span></div>"
+        for i, day in enumerate(order))
     return f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Iceland Trip Sep 2026 - Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>html,body{{margin:0;height:100%}}#map{{height:100vh}}
-.legend{{background:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.3);font:13px/1.6 sans-serif}}
-.legend b{{display:block;margin-bottom:4px}}.legend i{{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px}}</style>
+.legend{{background:#fff;padding:12px 14px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.32);font:13px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;color:#1f2937;min-width:245px}}
+.legend b{{display:block;margin-bottom:2px;font-size:14px}}.legend .legend-sub{{display:block;margin-bottom:8px;color:#6b7280;font-size:12px}}
+.legend-row{{display:grid;grid-template-columns:16px 1fr auto;gap:7px;align-items:center;margin:5px 0}}
+.legend i{{display:inline-block;width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.28)}}
+.legend code{{font-size:11px;background:#f3f4f6;padding:1px 4px;border-radius:4px;color:#374151}}
+.legend-count{{grid-column:2 / 4;color:#6b7280;font-size:11px;margin-top:-3px}}</style>
 </head><body><div id="map"></div><script>
 function coloredIcon(c){{return L.divIcon({{className:'',html:`<div style="width:14px;height:14px;background:${{c}};border:2px solid #fff;border-radius:50%;box-shadow:0 0 4px rgba(0,0,0,.5)"></div>`,iconSize:[18,18],iconAnchor:[9,9]}});}}
 var map=L.map('map');
 L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}}).addTo(map);
 {chr(10).join(markers)}
 var b=[];map.eachLayer(function(l){{if(l.getLatLng)b.push(l.getLatLng());}});if(b.length)map.fitBounds(b,{{padding:[40,40]}});
-L.control({{position:'bottomleft'}}).onAdd=function(){{var d=L.DomUtil.create('div','legend');d.innerHTML='<b>Iceland Trip Sep 2026</b>{legend_items}';return d;}}.addTo(map);
+L.control({{position:'bottomleft'}}).onAdd=function(){{var d=L.DomUtil.create('div','legend');d.innerHTML='<b>Map legend</b><span class="legend-sub">Day/date → pin & route color</span>{legend_items}';return d;}}.addTo(map);
 </script></body></html>"""
 
 def build_sheet(days, order):
