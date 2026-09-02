@@ -484,7 +484,15 @@ var map=L.map('map');
 L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png',{{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}}).addTo(map);
 {chr(10).join(markers)}
 var b=[];map.eachLayer(function(l){{if(l.getLatLng)b.push(l.getLatLng());}});if(b.length)map.fitBounds(b,{{padding:[40,40]}});
-L.control({{position:'bottomleft'}}).onAdd=function(){{var d=L.DomUtil.create('div','legend');d.innerHTML='<b>Map legend</b><span class="legend-sub">Day/date → pin & route color</span>{legend_items}';return d;}}.addTo(map);
+var legend=L.control({{position:'bottomleft'}});
+legend.onAdd=function(){{
+  var d=L.DomUtil.create('div','legend');
+  d.innerHTML='<b>Map legend</b><span class="legend-sub">Day/date → pin & route color</span>{legend_items}';
+  L.DomEvent.disableClickPropagation(d);
+  L.DomEvent.disableScrollPropagation(d);
+  return d;
+}};
+legend.addTo(map);
 </script></body></html>"""
 
 def build_sheet(days, order):
