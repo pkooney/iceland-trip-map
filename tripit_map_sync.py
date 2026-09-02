@@ -199,6 +199,11 @@ def infer_record_date(block, current_date):
     md = month_date_to_iso(block)
     if md:
         return md
+    # Car rental records can show only a drop-off date plus "5 Days"; TripIt's
+    # inclusive duration math would otherwise back-date KEF pickup to Sep 2.
+    # For this itinerary the Hertz pickup is explicitly 9:30 AM on arrival day.
+    if "### Pick Up" in block and "Supplier Name:Hertz" in block and "9:30 AM" in block:
+        return "2026-09-03"
     # For car/hotel blocks that only show checkout/dropoff date plus duration, back into start date.
     m = re.search(r"\b(\d{1,2}/\d{1,2}/\d{4})\s*\((\d+)\s+(?:Night|Nights|Day|Days)\)", block, re.I)
     if m:
@@ -397,8 +402,12 @@ def osrm_leg(a, b):
     return None, None
 
 def group_by_day(stops):
-    days, order = {}, []
+    days, order, seen = {}, [], set()
     for s in stops:
+        key = (s["day"], norm(s["name"]), round(s["lat"], 5), round(s["lon"], 5))
+        if key in seen:
+            continue
+        seen.add(key)
         if s["day"] not in days:
             days[s["day"]] = []
             order.append(s["day"])

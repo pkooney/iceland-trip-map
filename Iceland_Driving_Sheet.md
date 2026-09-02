@@ -1,22 +1,16 @@
 # Iceland Road Trip - Driving Sheet
-**Total (approx): 747 km / 12.8 hrs**
+**Total (approx): 691 km / 11.9 hrs**
 
-
-## Wed, Sep 2
-
-| Leg | Distance | Drive time |
-|---|---|---|
 
 ## Thu, Sep 3
 
 | Leg | Distance | Drive time |
 |---|---|---|
+| Pick Up Hertz Car Rental → Sky Lagoon | 49.4 km | 53 min |
 | Sky Lagoon → Perlan Nature Museum | 5.1 km | 10 min |
 | Perlan Nature Museum → Arrive The EDITION Reykjavik | 4.1 km | 8 min |
 | Arrive The EDITION Reykjavik → Dill Restaurant | 1.2 km | 3 min |
-| Dill Restaurant → Arrive The EDITION Reykjavik | 1.1 km | 2 min |
-| Arrive The EDITION Reykjavik → Pick Up Hertz Car Rental | 53.1 km | 55 min |
-| Pick Up Hertz Car Rental → Reykjavik | 52.7 km | 55 min |
+| Dill Restaurant → Reykjavik | 1.5 km | 4 min |
 
 ## Fri, Sep 4
 
@@ -30,7 +24,6 @@
 | Gullfoss Waterfall Lookout → Laugarás Lagoon | 36.7 km | 35 min |
 | Laugarás Lagoon → Arrive Hotel Ranga | 56.0 km | 51 min |
 | Arrive Hotel Ranga → Ranga Restaurant | 0.0 km | 0 min |
-| Ranga Restaurant → Arrive Hotel Ranga | 0.0 km | 0 min |
 
 ## Sat, Sep 5
 
@@ -43,10 +36,8 @@
 | Reynisfjara Black Sand Beach → Skálakot Manor Restaurant | 50.3 km | 46 min |
 | Skálakot Manor Restaurant → Kerið Crater | 97.8 km | 88 min |
 | Kerið Crater → Arrive The Retreat at Blue Lagoon Iceland | 106.1 km | 94 min |
-| Arrive The Retreat at Blue Lagoon Iceland → Arrive The Retreat at Blue Lagoon Iceland | 0.0 km | 0 min |
 | Arrive The Retreat at Blue Lagoon Iceland → Blue Lagoon | 0.0 km | 0 min |
 | Blue Lagoon → Lava Restaurant | 0.0 km | 0 min |
-| Lava Restaurant → Arrive The Retreat at Blue Lagoon Iceland | 0.0 km | 0 min |
 
 ## Sun, Sep 6
 
