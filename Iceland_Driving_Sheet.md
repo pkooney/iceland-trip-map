@@ -6,7 +6,7 @@
 
 | Leg | Distance | Drive time |
 |---|---|---|
-| Pick Up Hertz Car Rental → Sky Lagoon | 49.4 km | 53 min |
+| Pick Up Hertz Car Rental → Sky Lagoon | 49.3 km | 53 min |
 | Sky Lagoon → Perlan Nature Museum | 5.1 km | 10 min |
 | Perlan Nature Museum → Icelandic hot dog | 4.2 km | 8 min |
 | Icelandic hot dog → Arrive The EDITION Reykjavik | 1.1 km | 4 min |
